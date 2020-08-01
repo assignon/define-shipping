@@ -2,11 +2,20 @@
   <div class="home-core">
     <v-layout class="home-layout" column justify-center align-center>
       <v-flex xs12 sm12 md12 lg12 xl12 class="landing-flex" id="home">
-        <video id="video">
+        <video id="video" autoplay="true" muted="muted" loop>
           <source src="../assets/boat.mp4" type="video/mp4" />
           <!-- <source src="../assets/boat.ogg" type="video/ogg" /> -->
           Your browser does not support the video tag.
         </video>
+        <div class="video-ctrl">
+          <v-btn rounded color="#16032c" dark large class="ctrl-btn" @click="setVolume()">
+            <v-icon medium color="white" v-if="muted">fas fa-volume-up</v-icon>
+            <v-icon medium color="white" v-else>fas fa-volume-mute</v-icon>
+
+            <p v-if="muted" class="muted-status">Unmuted</p>
+            <p v-else class="muted-status">Muted</p>
+          </v-btn>
+        </div>
       </v-flex>
 
       <v-flex xs12 sm12 md12 lg12 xl12 class="svs-flex" id="svs">
@@ -22,7 +31,7 @@
             data-aos-duration="1000"
           >
             <!-- <v-icon class="mb-3" style="font-size: 100px; color: #16032c;">fas {{items.icon}}</v-icon> -->
-            <img :src="`../assets/${items.image}`" alt style="width: 50px;height:50px" />
+            <img :src="items.image" alt style="width: 100px;height:100px" class="mb-4" />
             <h3 class="mb-2">{{items.name}}</h3>
             <p>{{items.content}}</p>
           </div>
@@ -36,7 +45,7 @@
           >
             <v-carousel-item v-for="(items, i) in svs" :key="i">
               <div class="svs-items-carousel">
-                <v-icon class="mb-3" style="font-size: 100px; color: #16032c;">fas {{items.icon}}</v-icon>
+                <img :src="items.image" alt style="width: 100px;height:100px" class="mb-3" />
                 <h3 class="mb-2">{{items.name}}</h3>
                 <p>{{items.content}}</p>
               </div>
@@ -166,21 +175,21 @@ export default {
         {
           name: "Goods",
           // image: "fa-shopping-bag",
-          image: "goods.svg",
+          image: require("../assets/goods.svg"),
           content:
             "Lorem Ipsum is simply dummy text of the printing and typesetting industry.Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries."
         },
         {
           name: "Cars",
           // icon: "fa-car",
-          image: "cars.svg",
+          image: require("../assets/cars.svg"),
           content:
             "Lorem Ipsum is simply dummy text of the printing and typesetting industry.Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronictypesetting, remaining essentially unchanged."
         },
         {
           name: "Trucks",
           // icon: "fa-truck",
-          image: "truck.svg",
+          image: require("../assets/truck.svg"),
           content:
             "Lorem Ipsum is simply dummy text of the printing and typesetting industry.Lorem Ipsum has been the industry's standard dummy text ever "
         }
@@ -196,19 +205,26 @@ export default {
       ],
       message: "", // message input value
       email: "", // email input value
-      formErrorAnimation: "headShake"
+      formErrorAnimation: "headShake",
+      muted: true // video mute status
     };
   },
 
-  created() {
-    this.playVideo();
+  mounted() {
+    // this.volume();
   },
 
   methods: {
-    playVideo() {
-      // auto play video when page reload
-      let video = document.getElementById("video");
-      video.play();
+    setVolume() {
+      // mute and unmute video
+      let video = document.querySelector("#video");
+      if (video.muted) {
+        this.muted = false;
+        video.muted = false;
+      } else {
+        this.muted = true;
+        video.muted = true;
+      }
     },
 
     submitForm() {
@@ -260,7 +276,7 @@ export default {
   height: 95vh;
   display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: flex-start;
 }
 #video {
   width: 100vw; /* Could also use width: 100%; */
@@ -270,6 +286,30 @@ export default {
   /* left: 0px;
   top: 0px;
   z-index: -1; */
+}
+.video-ctrl {
+  width: 100%;
+  height: auto;
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-end;
+  padding: 20px;
+  position: absolute;
+}
+.ctrl-btn {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  opacity: 0.9;
+}
+.ctrl-btn p {
+  text-transform: capitalize;
+  text-align: center;
+  margin-left: 10px;
+  margin-top: 15px;
+  font-size: 17px;
+  font-weight: bold;
 }
 .svs-flex {
   width: 100%;
