@@ -1,13 +1,30 @@
+import "material-design-icons-iconfont/dist/material-design-icons.css";
+import "@fortawesome/fontawesome-free/css/all.css";
 import Vue from "vue";
 import App from "./App.vue";
 import "./registerServiceWorker";
 import router from "./router";
 import store from "./store";
+import vuetify from "./plugins/vuetify";
+import VAnimateCss from "v-animate-css";
+import Vuex from "vuex";
+// import Axios from "axios";
+//Aos imports
+import AOS from "aos";
+import "aos/dist/aos.css";
 
 Vue.config.productionTip = false;
+Vue.use(VAnimateCss);
+Vue.use(Vuex);
+
+// Vue.prototype.$axios = Axios;
 
 new Vue({
+  created() {
+    AOS.init();
+  },
   router,
   store,
-  render: h => h(App)
+  vuetify,
+  render: (h) => h(App),
 }).$mount("#app");
