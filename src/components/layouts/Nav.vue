@@ -11,7 +11,7 @@
         <div @click="$vuetify.goTo('#svs', options)" style="text-decoration: none;cursor: pointer;">
           <div class="menu-item">
             <span>Services</span>
-            <v-icon style="font-size: 18px;" class>fas fa-address-card</v-icon>
+            <v-icon style="font-size: 18px;" class>fas fa-shopping-bag</v-icon>
           </div>
         </div>
 
@@ -164,7 +164,7 @@
         <div @click="$vuetify.goTo('#svs', options), drawer=false">
           <div class="mobile-menu-item animated">
             <span>Services</span>
-            <v-icon style="font-size: 20px;" class>fas fa-address-card</v-icon>
+            <v-icon style="font-size: 20px;" class>fas fa-shopping-bag</v-icon>
           </div>
         </div>
 
