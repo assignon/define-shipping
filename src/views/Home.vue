@@ -34,6 +34,18 @@
             <img :src="items.image" alt style="width: 100px;height:100px" class="mb-4" />
             <h3 class="mb-2">{{items.name}}</h3>
             <p>{{items.content}}</p>
+            <ul class='svs-types'>
+              <li 
+                v-for="(type, t) in items.types" 
+                :key="t" 
+                data-aos="slide-right" 
+                :data-aos-delay="t*220" 
+                data-aos-duration="1000"
+              >
+                <v-icon small color='#16032c'>fas fa-angle-right</v-icon>
+                {{type}}
+              </li>
+            </ul>
           </div>
 
           <v-carousel
@@ -58,29 +70,28 @@
         <h1 data-aos="fade-up" data-aos-delay="20" data-aos-duration="1000">About Us</h1>
         <v-divider width="5%"></v-divider>
         <p data-aos="fade-in" data-aos-duration="1000" data-aos-delay="30">
-          Lorem Ipsum is simply dummy text of the printing and typesetting industry.
-          Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,
-          when an unknown printer took a galley of type and scrambled it to make a type
-          specimen book. It has survived not only five centuries, but also the leap into
+          My name is A. Ajibola an entrepreneur in shipping and freight forwarding.
+          Define shipping started a decade ago in Lagos Nigeria. The main activity 
+          was the buying and selling of cars, as the business grow, we seek to expand
+          and get into new markets and territories.
           <br />
-          <br />electronic typesetting, remaining essentially unchanged. It was popularised in
-          the 1960s with the release of Letraset sheets containing Lorem Ipsum passages,
-          and more recently with desktop publishing software like Aldus PageMaker
-          including versions of Lorem Ipsum.It is a long established fact that
-          a reader will be distracted by the readable content of a page when
-          looking at its layout. The point of using Lorem Ipsum is that it
-          has a more-or-less normal distribution of letters, as opposed to
+          <br />Today, Define shipping is present in the Netherlands where we buying
+          and sell cars, we ship containers and many other goods according to the laws
+          governing international trade and supply chain.
+
           <br />
-          <br />using 'Content here, content here', making it look like readable English.
-          Many desktop publishing packages and web page editors now use Lorem Ipsum
-          as their default model text, and a search for 'lorem ipsum' will uncover
-          many web sites still in their infancy. Various versions have evolved over
-          the years, sometimes by accident, sometimes on purpose (injected humour and the like).
+          <br />Define Shipping is connecting and simplifying trade to grow and thrive
+          together with our customers.
+          We carrying out worldwide shipping and our carries are:
+          <ul>
+            <li style='list-style:none'> <v-icon small color='#16032c'>fas fa-angle-right</v-icon> Grimaldi lines</li>
+            <li style='list-style:none'> <v-icon small color='#16032c'>fas fa-angle-right</v-icon> Sallaum lines</li>
+          </ul>
         </p>
       </v-flex>
 
       <v-flex xs12 sm12 md12 lg12 xl12 class="contact-flex" id="contact">
-        <h1>Contact</h1>
+        <h1  data-aos="fade-up" data-aos-duration="1000" data-aos-delay="30">Contact</h1>
         <v-divider width="5%"></v-divider>
         <div class="contact-container">
           <div class="contact-info hidden-sm-and-down">
@@ -176,22 +187,22 @@ export default {
           name: "Goods",
           // image: "fa-shopping-bag",
           image: require("../assets/goods.svg"),
-          content:
-            "Lorem Ipsum is simply dummy text of the printing and typesetting industry.Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries."
+          content:"We buy and sell and ship different types of goods such as",
+          types: ["Furniture", "Bicycle", "Tires", "Computers and accessories", "Electronics", "Home appliance"]
         },
         {
           name: "Cars",
           // icon: "fa-car",
           image: require("../assets/cars.svg"),
-          content:
-            "Lorem Ipsum is simply dummy text of the printing and typesetting industry.Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronictypesetting, remaining essentially unchanged."
+          content:"We deal on all types of cars in buying selling and shipping such as",
+          types: ["New cars", "Used cars", "Parts"]
         },
         {
           name: "Trucks",
           // icon: "fa-truck",
           image: require("../assets/truck.svg"),
-          content:
-            "Lorem Ipsum is simply dummy text of the printing and typesetting industry.Lorem Ipsum has been the industry's standard dummy text ever "
+          content: "We buy, sell and ship ",
+          types: ["Trucks", "Van", "Lorries", "Spare parts"]
         }
       ],
       rules: {
@@ -350,6 +361,21 @@ export default {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+}
+.svs-types{
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  padding: 0px;
+  padding-inline-start: 0px;
+}
+.svs-types li{
+  list-style: none;
+  font-weight: bold;
+  color: #16032c;
+  text-align: left;
 }
 .v-carousel {
 }
