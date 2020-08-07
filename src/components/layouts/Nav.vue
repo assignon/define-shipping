@@ -136,7 +136,11 @@
           medium
         >fas fa-bars</v-icon>
 
-        <h2 class="ml-3 font-weight-bold" style="color:white;width: 80%;">Define Shipping</h2>
+        <h2
+          class="ml-3 font-weight-bold"
+          style="color:white;width: 80%;"
+          @click="$vuetify.goTo(0, options)"
+        >Define Shipping</h2>
 
         <a
           href="https://www.facebook.com"

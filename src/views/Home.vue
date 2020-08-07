@@ -60,6 +60,18 @@
                 <img :src="items.image" alt style="width: 100px;height:100px" class="mb-3" />
                 <h3 class="mb-2">{{items.name}}</h3>
                 <p>{{items.content}}</p>
+                <ul class='svs-types'>
+                  <li 
+                    v-for="(type, t) in items.types" 
+                    :key="t" 
+                    data-aos="slide-right" 
+                    :data-aos-delay="t*220" 
+                    data-aos-duration="1000"
+                  >
+                    <v-icon small color='#16032c'>fas fa-angle-right</v-icon>
+                    {{type}}
+                  </li>
+                </ul>
               </div>
             </v-carousel-item>
           </v-carousel>
@@ -125,8 +137,8 @@
           </div>
 
           <div class="contact-form">
-            <h3 class="mb-5">Get in Touch:</h3>
-            <v-form class="mt-5" ref="contactForm" value>
+            <h3 class="">Get in Touch:</h3>
+            <v-form class="mt-3" ref="contactForm" value>
               <p class="form-msg animated"></p>
               <v-text-field
                 v-model="email"
@@ -326,7 +338,7 @@ export default {
   width: 100%;
   height: auto;
   padding-top: 70px;
-  padding-bottom: 70px;
+  /* padding-bottom: 70px; */
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -509,7 +521,7 @@ export default {
   .about-flex,
   .contact-flex {
     padding-top: 30px;
-    padding-bottom: 30px;
+    /* padding-bottom: 30px; */
   }
   .svs-flex .v-divider,
   .about-flex .v-divider,
@@ -532,6 +544,15 @@ export default {
   }
   .contact-form .v-form {
     width: 90%;
+  }
+  .svs-types{
+    width: auto;
+  justify-content: flex-start;
+  align-items: flex-start;
+  margin: auto;
+  }
+  .svs-types li{
+    
   }
 }
 </style>
