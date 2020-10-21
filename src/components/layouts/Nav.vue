@@ -38,7 +38,14 @@
         <a href="https://www.facebook.com" target="_blank" style="text-decoration: none;">
           <div class="menu-item">
             <!--            <span>Github</span>-->
-            <v-icon style="font-size: 25px; color:#fff" class>fab fa-facebook-square</v-icon>
+            <a
+                href="https://www.facebook.com/defineShipping"
+                target="_blank"
+                class="mt-2"
+                style="text-decoration: none;"
+              >
+                <v-icon style="font-size: 25px; color:#fff" class>fab fa-facebook-square</v-icon>
+              </a>
           </div>
         </a>
       </v-flex>

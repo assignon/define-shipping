@@ -38,7 +38,7 @@
               <li 
                 v-for="(type, t) in items.types" 
                 :key="t" 
-                data-aos="slide-right" 
+                data-aos="fade-up" 
                 :data-aos-delay="t*220" 
                 data-aos-duration="1000"
               >
@@ -121,13 +121,14 @@
                 <v-icon large color="#16032c">fas fa-phone-alt</v-icon>
                 <span class="mt-2 ml-2 font-weight-bold">Tel</span>
               </div>
-              <span class>0625536476</span>
+              <span class>0628481312 & 0686147453</span>
             </div>
 
             <div>
               <span class="font-weight-bold" style="font-size: 20px;">Social Media</span>
               <a
                 href="https://www.facebook.com/defineShipping"
+                target="_blank"
                 class="mt-2"
                 style="text-decoration: none;"
               >

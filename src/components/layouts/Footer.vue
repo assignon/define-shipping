@@ -1,14 +1,25 @@
 <template>
   <div class="footer">
     <div class="contact">
-      <h3>Contact</h3>
-      <p>defineShipping@gmail.com</p>
-      <p>061724356</p>
+      <div class='contact-container'>
+        <h3 class='mb-3'>Contact</h3>
+        <p>defineShipping@gmail.com</p>
+        <p>0628481312 & 0686147453</p>
+      </div>
     </div>
 
     <div class="socials">
-      <h3>Social Media</h3>
-      <v-icon medium color="white">fab fa-facebook-square</v-icon>
+      <div class='social-container'>
+        <h3 class='mb-3'>Social Media</h3>
+        <a
+                href="https://www.facebook.com/defineShipping"
+                target="_blank"
+                class="mt-2"
+                style="text-decoration: none;"
+              >
+                <v-icon medium color="#fff">fab fa-facebook-square</v-icon>
+              </a>
+      </div>
     </div>
   </div>
 </template>
@@ -23,7 +34,7 @@ export default {};
   flex-direction: row;
   justify-content: space-around;
   align-items: flex-start;
-  background-color: #183153;
+  background-color: #16032c;
   padding-bottom: 30px;
   padding-top: 30px;
   flex-wrap: wrap;
@@ -33,9 +44,16 @@ export default {};
   width: 50%;
   height: auto;
   display: flex;
-  flex-direction: column;
   justify-content: center;
   align-items: center;
+}
+.contact-container, .social-container{
+  width: auto;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
 }
 .contact h3,
 .socials h3 {
