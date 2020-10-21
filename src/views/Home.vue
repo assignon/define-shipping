@@ -139,10 +139,10 @@
 
           <div class="contact-form">
             <h3 class="">Get in Touch:</h3>
-            <v-form class="mt-3" ref="contactForm" value>
+            <v-form class="mt-3" ref="contactForm" @submit.prevent="submitForm()" name="contact" method="POST" netlify-honeypot="bot-field" data-netlify="true">
               <p class="form-msg animated"></p>
               <v-text-field
-                v-model="email"
+                v-model="form.email"
                 :rules="emailRules"
                 label="Email"
                 required
@@ -157,7 +157,7 @@
                 rows="5"
                 color="#8B53FF"
                 flat
-                v-model="message"
+                v-model="form.message"
                 :rules="[rules.required]"
                 style="line-height: 22px;"
                 outlined
@@ -166,13 +166,16 @@
                 data-aos-duration="500"
               />
               <div class="btn-container">
+                <div data-netlify-recaptcha>
+
+                </div>
                 <v-btn
                   depressed
                   height="40"
                   width="30%"
                   class="fot-weight-bold white--text"
                   color="#16032c"
-                  @click="submitForm()"
+                  @click.prevent="submitForm()"
                 >
                   <v-icon medium left class="ml-1">fas fa-paper-plane</v-icon>SEND
                 </v-btn>
@@ -227,8 +230,10 @@ export default {
         v => !!v || "Email is required",
         v => /.+@.+/.test(v) || "Email is not valid"
       ],
-      message: "", // message input value
-      email: "", // email input value
+     form: {
+        message: "", // message input value
+        email: "", // email input value
+     },
       formErrorAnimation: "headShake",
       muted: true // video mute status
     };
@@ -251,6 +256,26 @@ export default {
       }
     },
 
+    encode (data) {
+      return Object.keys(data)
+        .map(
+          key => `${encodeURIComponent(key)}=${encodeURIComponent(data[key])}`
+        )
+        .join("&");
+    },
+
+    handleSubmit () {
+      fetch('/', {
+        method: "post",
+        header: { "Content-Type": "application/x-www-form-urlencoded" },
+        body: this.encode({
+          "form-name": "contact",
+          ...this.form
+        }),
+      }).then(() => console.log('sumited'))
+      .catch(e => console.error(e))
+    },
+
     submitForm() {
       let msg = document.querySelector(".form-msg");
       let self = this;
@@ -259,8 +284,9 @@ export default {
         msg.innerHTML =
           "Thankyou, your message is submited. We will get back to you as soon as possible on the email:" +
           this.email;
-        self.$ref.contactForm.reset();
-        console.log("submit");
+        // self.$ref.contactForm.reset();
+        //submit form
+        self.handleSubmit();
       } else {
         msg.style.color = "red";
         if (msg.classList.contains(self.formErrorAnimation)) {
