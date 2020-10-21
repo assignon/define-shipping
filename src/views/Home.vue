@@ -139,7 +139,7 @@
 
           <div class="contact-form">
             <h3 class="">Get in Touch:</h3>
-            <v-form class="mt-3" ref="contactForm" @submit.prevent="submitForm()" name="contact" method="POST" netlify-honeypot="bot-field" data-netlify="true">
+            <v-form class="mt-3 contact-form-tag" ref="contactForm" name="contact" method="POST" netlify-honeypot="bot-field" data-netlify="true">
               <p class="form-msg animated"></p>
               <v-text-field
                 v-model="form.email"
@@ -279,14 +279,17 @@ export default {
     submitForm() {
       let msg = document.querySelector(".form-msg");
       let self = this;
-      if (this.$refs.contactForm.validate()) {
+      if (self.$refs.contactForm.validate()) {
         msg.style.color = "green";
         msg.innerHTML =
           "Thankyou, your message is submited. We will get back to you as soon as possible on the email:" +
           this.email;
-        // self.$ref.contactForm.reset();
         //submit form
         self.handleSubmit();
+        self.$refs.contactForm.reset()
+        // document.querySelector('.contact-form-tag').reset()
+        //  self.form.email = '';
+        // self.form.message = '';
       } else {
         msg.style.color = "red";
         if (msg.classList.contains(self.formErrorAnimation)) {
