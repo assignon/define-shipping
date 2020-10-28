@@ -139,16 +139,17 @@
 
           <div class="contact-form">
             <h3 class="">Get in Touch:</h3>
-            <!-- <v-form class="mt-3 contact-form-tag" ref="contactForm" name="contact" method="POST" netlify-honeypot="bot-field" data-netlify="true"> -->
-            <form @submit.prevent='handleSubmit' name="contact" method="POST" data-netlify="true" data-netlify-honeypot="bot-field">
+            <v-form class="mt-3 contact-form-tag" ref="contactForm" @submit.prevent='submitForm' name="contact" method="POST" data-netlify="true" data-netlify-honeypot="bot-field">
+            <!-- <form @submit.prevent='handleSubmit' name="contact" method="POST" data-netlify="true" data-netlify-honeypot="bot-field"> -->
               <input type="hidden" name="form-name" value="contact">
               <p class="form-msg animated"></p>
-              <input type="email" name='email' required placeholder='Email' v-model='form.email'>
-              <textarea name="message" id="" cols="30" rows="10" placeholder='Message' v-model='form.message'></textarea>
-              <!-- <v-text-field
+              <!-- <input type="email" name='email' required placeholder='Email' v-model='form.email'>
+              <textarea name="message" id="" cols="30" rows="10" placeholder='Message' v-model='form.message'></textarea> -->
+              <v-text-field
                 v-model="form.email"
                 :rules="emailRules"
                 type="email"
+                name='email'
                 label="Email"
                 required
                 outlined
@@ -157,8 +158,8 @@
                 data-aos-duration="500"
               ></v-text-field>
               <v-textarea
-                class
                 label="Your Message"
+                name="message"
                 rows="5"
                 color="#8B53FF"
                 flat
@@ -169,9 +170,10 @@
                 data-aos="fade-up"
                 data-aos-delay="450"
                 data-aos-duration="500"
-              /> -->
-              <!-- <div class="btn-container">
-                <div data-netlify-recaptcha>
+              />
+              <div class="btn-container mt-5">
+                <button type='submit'><v-icon medium left class="ml-1">fas fa-paper-plane</v-icon>SENDGet In Touch</button>
+                <!-- <div data-netlify-recaptcha>
 
                 </div>
                 <v-btn
@@ -182,11 +184,11 @@
                   color="#16032c"
                 >
                   <v-icon medium left class="ml-1">fas fa-paper-plane</v-icon>SEND
-                </v-btn>
-              </div> -->
-              <button >Get In Touch</button>
-            </form>
-            <!-- </v-form> -->
+                </v-btn> -->
+              </div>
+              <!-- <button ><v-icon medium left class="ml-1">fas fa-paper-plane</v-icon>SENDGet In Touch</button> -->
+            <!-- </form> -->
+            </v-form>
           </div>
         </div>
       </v-flex>
@@ -290,18 +292,6 @@ export default {
         // this.$router.push('404')
       })
 
-      // fetch('/', {
-      //   method: "post",
-      //   header: { "Content-Type": "application/x-www-form-urlencoded" },
-      //   body: this.encode({
-      //     "form-name": "contact",
-      //     ...this.form
-      //   }),
-      // }).then((response) => {
-      //   console.log(response)
-      //   self.$router.push("Home");
-      // })
-      // .catch(e => console.error(e))
     },
 
     submitForm() {
@@ -560,7 +550,7 @@ export default {
   height: auto;
   font-size: 16px;
 }
-.contact-form form{
+/* .contact-form form{
   width: 100%;
   height: auto;
   display: flex;
@@ -571,7 +561,7 @@ export default {
 .contact-form form input, .contact-form form textarea{
   border: 1px solid grey;
   border-radius: 3px;
-}
+} */
 .contact-form .v-form .v-text-field {
   width: 100%;
 }
