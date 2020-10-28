@@ -140,7 +140,7 @@
           <div class="contact-form">
             <h3 class="">Get in Touch:</h3>
             <!-- <v-form class="mt-3 contact-form-tag" ref="contactForm" name="contact" method="POST" netlify-honeypot="bot-field" data-netlify="true"> -->
-            <form name="contact" method="POST" data-netlify="true">
+            <form @submit.prevent="submitForm" name="contact" method="POST" data-netlify="true">
               <p class="form-msg animated"></p>
               <v-text-field
                 v-model="form.email"
