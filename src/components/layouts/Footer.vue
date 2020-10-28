@@ -3,7 +3,7 @@
     <div class="contact">
       <div class='contact-container'>
         <h3 class='mb-3'>Contact</h3>
-        <p>defineShipping@gmail.com</p>
+        <p>defineshipping@gmail.com</p>
         <p>0628481312 & 0686147453</p>
       </div>
     </div>

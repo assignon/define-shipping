@@ -113,7 +113,7 @@
                 <v-icon large color="#16032c">fas fa-at</v-icon>
                 <span class="mt-1 ml-2 font-weight-bold">Email</span>
               </div>
-              <span class>define-shipping@gmail.com</span>
+              <span class>defineshipping@gmail.com</span>
             </div>
 
             <div style="margin-bottom: 40px;">
