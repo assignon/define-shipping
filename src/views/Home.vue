@@ -141,8 +141,8 @@
             <h3 class="">Get in Touch:</h3>
             <!-- <v-form class="mt-3 contact-form-tag" ref="contactForm" name="contact" method="POST" netlify-honeypot="bot-field" data-netlify="true"> -->
             <form @submit.prevent='handleSubmit' name="contact" method="POST" data-netlify="true" data-netlify-honeypot="bot-field">
-              <p class="form-msg animated"></p>
               <input type="hidden" name="form-name" value="contact">
+              <p class="form-msg animated"></p>
               <input type="email" name='email' required placeholder='Email' v-model='form.email'>
               <textarea name="message" id="" cols="30" rows="10" placeholder='Message' v-model='form.message'></textarea>
               <!-- <v-text-field
@@ -269,6 +269,7 @@ export default {
     },
 
     handleSubmit () {
+      let self = this;
       // const axiosConfig = {
       //   header: { "Content-Type": "application/x-www-form-urlencoded" }
       // };
@@ -288,7 +289,10 @@ export default {
           "form-name": "contact",
           ...this.form
         }),
-      }).then((response) => {console.log(response)})
+      }).then((response) => {
+        console.log(response)
+        self.$router.push("Home");
+      })
       .catch(e => console.error(e))
     },
 
