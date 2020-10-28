@@ -184,7 +184,7 @@
                   <v-icon medium left class="ml-1">fas fa-paper-plane</v-icon>SEND
                 </v-btn>
               </div> -->
-              <button >SEND</button>
+              <button >Get In Touch</button>
             </form>
             <!-- </v-form> -->
           </div>
