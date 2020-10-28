@@ -140,11 +140,8 @@
           <div class="contact-form">
             <h3 class="">Get in Touch:</h3>
             <v-form class="mt-3 contact-form-tag" ref="contactForm" @submit.prevent='submitForm' name="contact" method="POST" data-netlify="true" data-netlify-honeypot="bot-field">
-            <!-- <form @submit.prevent='handleSubmit' name="contact" method="POST" data-netlify="true" data-netlify-honeypot="bot-field"> -->
               <input type="hidden" name="form-name" value="contact">
-              <p class="form-msg animated"></p>
-              <!-- <input type="email" name='email' required placeholder='Email' v-model='form.email'>
-              <textarea name="message" id="" cols="30" rows="10" placeholder='Message' v-model='form.message'></textarea> -->
+              <p class="form-msg animated"></p>  
               <v-text-field
                 v-model="form.email"
                 :rules="emailRules"
@@ -156,6 +153,7 @@
                 data-aos="fade-up"
                 data-aos-delay="300"
                 data-aos-duration="500"
+                class='contact-input animated'
               ></v-text-field>
               <v-textarea
                 label="Your Message"
@@ -169,25 +167,16 @@
                 outlined
                 data-aos="fade-up"
                 data-aos-delay="450"
+                class='contact-input animated'
                 data-aos-duration="500"
               />
-              <div class="btn-container mt-5">
-                <button type='submit'><v-icon medium left class="ml-1">fas fa-paper-plane</v-icon>SENDGet In Touch</button>
-                <!-- <div data-netlify-recaptcha>
-
-                </div>
-                <v-btn
-                  depressed
-                  height="40"
-                  width="30%"
-                  class="fot-weight-bold white--text"
-                  color="#16032c"
-                >
-                  <v-icon medium left class="ml-1">fas fa-paper-plane</v-icon>SEND
-                </v-btn> -->
+              <div class="btn-container mt-5 contact-input animated">
+                <button type='submit' class='contact-form-submit pa-3'><v-icon medium left class="ml-1" color='white'>fas fa-paper-plane</v-icon><strong>Get In Touch</strong></button>
               </div>
-              <!-- <button ><v-icon medium left class="ml-1">fas fa-paper-plane</v-icon>SENDGet In Touch</button> -->
-            <!-- </form> -->
+              <div class='submit-succes' v-if='formSubmitedSuccesfully'>
+                <v-icon large color='#54bf8e' class='mb-3 succes-notification animated'>fas fa-check-circle</v-icon>
+                <p class='succes-notification animated'>Message submited successfully, we will get back to you as soon as possible</p>
+              </div>
             </v-form>
           </div>
         </div>
@@ -241,7 +230,8 @@ export default {
         email: "", // email input value
      },
       formErrorAnimation: "headShake",
-      muted: true // video mute status
+      muted: true, // video mute status
+      formSubmitedSuccesfully: false
     };
   },
 
@@ -262,6 +252,50 @@ export default {
       }
     },
 
+    contactFormAnimation(){
+      let contactInputs = document.querySelectorAll('.contact-input');
+      let succesNotification = document.querySelectorAll('.succes-notification');
+      let self = this;
+
+      for (let i = 0; i < contactInputs.length; i++) {
+        if(contactInputs[i].classList.contains('fadeInUp')){
+          contactInputs[i].classList.remove('fadeInUp');
+          contactInputs[i].classList.add('fadeOutUp');
+          contactInputs[i].style.animationDelay = `${i/2}s`
+        }else{
+          contactInputs[i].classList.add('fadeOutUp');
+          contactInputs[i].style.animationDelay = `${i/2}s`
+        }
+        setTimeout(()=>{
+          contactInputs[i].style.display = 'none';
+        }, 1500)
+      }
+      // display succes notification
+      setTimeout(()=>{
+        self.formSubmitedSuccesfully = true;
+        for (let i = 0; i < succesNotification.length; i++) {
+          succesNotification[i].classList.add('fadeInUp');
+          succesNotification[i].style.animationDelay = `${i/2}s`
+        }
+      }, 1500)
+      // remove succes notification and display contact form
+      setTimeout(()=>{
+        for (let i = 0; i < succesNotification.length; i++) {
+          succesNotification[i].classList.remove('fadeInUp');
+          succesNotification[i].classList.add('fadeOutUp');
+          succesNotification[i].style.animationDelay = `${i/2}s`
+        }
+        self.formSubmitedSuccesfully = false;
+        for (let i = 0; i < contactInputs.length; i++) {
+          contactInputs[i].style.display = 'flex';
+          contactInputs[i].classList.remove('fadeOutUp');
+          contactInputs[i].classList.add('fadeInUp');
+          contactInputs[i].style.animationDelay = `${i/2}s`
+        }
+      }, 7000)
+
+    },
+
     encode (data) {
       return Object.keys(data)
         .map(
@@ -271,7 +305,7 @@ export default {
     },
 
     handleSubmit () {
-      // let self = this;
+      let self = this;
       const axiosConfig = {
         header: { "Content-Type": "application/x-www-form-urlencoded" }
       };
@@ -285,11 +319,10 @@ export default {
       )
       .then((response) => {
         console.log(response)
-        // this.$router.push('thanks')
+        self.contactFormAnimation();
       })
       .catch((e) => {
         console.log(e)
-        // this.$router.push('404')
       })
 
     },
@@ -297,18 +330,12 @@ export default {
     submitForm() {
       let msg = document.querySelector(".form-msg");
       let self = this;
-      // if (self.$refs.contactForm.validate()) {
       if (self.form.email != '' && self.form.message != '') {
-        msg.style.color = "green";
-        msg.innerHTML =
-          "Thankyou, your message is submited. We will get back to you as soon as possible on the email:" +
-          this.form.email;
+        msg.innerHTML = ""
         //submit form
         self.handleSubmit();
-        // self.$refs.contactForm.reset()
-        // document.querySelector('.contact-form-tag').reset()
-         self.form.email = null;
-        self.form.message = null;
+         self.form.email = "";
+        self.form.message = "";
       } else {
         msg.style.color = "red";
         if (msg.classList.contains(self.formErrorAnimation)) {
@@ -321,7 +348,6 @@ export default {
         }
         msg.innerHTML =
           "Email and message fields should not be empty and the email must be a valide email. Try again.";
-        console.log("not valide");
       }
     }
   }
@@ -565,6 +591,11 @@ export default {
 .contact-form .v-form .v-text-field {
   width: 100%;
 }
+.contact-form-submit{
+  border-radius: 5px;
+  background-color: #16032c;
+  color: white;
+}
 .btn-container {
   width: 100%;
   height: auto;
@@ -572,6 +603,19 @@ export default {
   justify-content: flex-end;
   align-items: center;
   margin-top: -15px;
+}
+.submit-succes{
+   width: 80%;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.submit-succes p{
+  font-size: 16px;
+  text-align: center;
+  width: 100%
 }
 @media only screen and (max-width: 500px) {
   .svs-container {
@@ -603,7 +647,7 @@ export default {
   .contact-form {
     width: 100%;
   }
-  .contact-form .v-form {
+  .contact-form .v-form, .submit-succes{
     width: 90%;
   }
   .svs-types{
