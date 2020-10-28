@@ -140,9 +140,9 @@
           <div class="contact-form">
             <h3 class="">Get in Touch:</h3>
             <!-- <v-form class="mt-3 contact-form-tag" ref="contactForm" name="contact" method="POST" netlify-honeypot="bot-field" data-netlify="true"> -->
-            <form @submit.prevent='handleSubmit' name="contact" method="POST" netlify>
+            <form @submit.prevent='handleSubmit' name="contact" method="POST" data-netlify="true" data-netlify-honeypot="bot-field">
               <p class="form-msg animated"></p>
-              <input type="email" required placeholder='Email' v-model='form.email'>
+              <input type="email" name='email' required placeholder='Email' v-model='form.email'>
               <textarea name="message" id="" cols="30" rows="10" placeholder='Message' v-model='form.message'></textarea>
               <!-- <v-text-field
                 v-model="form.email"
