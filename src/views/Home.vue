@@ -142,6 +142,7 @@
             <!-- <v-form class="mt-3 contact-form-tag" ref="contactForm" name="contact" method="POST" netlify-honeypot="bot-field" data-netlify="true"> -->
             <form @submit.prevent='handleSubmit' name="contact" method="POST" data-netlify="true" data-netlify-honeypot="bot-field">
               <p class="form-msg animated"></p>
+              <input type="hidden" name="form-name" value="contact">
               <input type="email" name='email' required placeholder='Email' v-model='form.email'>
               <textarea name="message" id="" cols="30" rows="10" placeholder='Message' v-model='form.message'></textarea>
               <!-- <v-text-field
