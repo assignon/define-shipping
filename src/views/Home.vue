@@ -144,6 +144,7 @@
               <v-text-field
                 v-model="form.email"
                 :rules="emailRules"
+                type="email"
                 label="Email"
                 required
                 outlined
@@ -189,9 +190,7 @@
 </template>
 
 <script>
-// @ is an alias to /src
-// import HelloWorld from "@/components/HelloWorld.vue";
-
+// import axios from "axios";
 export default {
   name: "Home",
   components: {},
@@ -272,24 +271,25 @@ export default {
           "form-name": "contact",
           ...this.form
         }),
-      }).then(() => console.log('sumited'))
+      }).then((response) => {console.log(response)})
       .catch(e => console.error(e))
     },
 
     submitForm() {
       let msg = document.querySelector(".form-msg");
       let self = this;
-      if (self.$refs.contactForm.validate()) {
+      // if (self.$refs.contactForm.validate()) {
+      if (self.form.email != '' && self.form.message != '') {
         msg.style.color = "green";
         msg.innerHTML =
           "Thankyou, your message is submited. We will get back to you as soon as possible on the email:" +
-          this.email;
+          this.form.email;
         //submit form
         self.handleSubmit();
-        self.$refs.contactForm.reset()
+        // self.$refs.contactForm.reset()
         // document.querySelector('.contact-form-tag').reset()
-        //  self.form.email = '';
-        // self.form.message = '';
+         self.form.email = null;
+        self.form.message = null;
       } else {
         msg.style.color = "red";
         if (msg.classList.contains(self.formErrorAnimation)) {
