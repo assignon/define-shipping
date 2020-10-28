@@ -195,7 +195,7 @@
 </template>
 
 <script>
-// import axios from "axios";
+import axios from "axios";
 export default {
   name: "Home",
   components: {},
@@ -269,31 +269,39 @@ export default {
     },
 
     handleSubmit () {
-      let self = this;
-      // const axiosConfig = {
-      //   header: { "Content-Type": "application/x-www-form-urlencoded" }
-      // };
-      // axios.post(
-      //   "/",
-      //   this.encode({
-      //     "form-name": "contact",
-      //     ...this.form
-      //   }),
-      //   axiosConfig
-      // );
-
-      fetch('/', {
-        method: "post",
-        header: { "Content-Type": "application/x-www-form-urlencoded" },
-        body: this.encode({
+      // let self = this;
+      const axiosConfig = {
+        header: { "Content-Type": "application/x-www-form-urlencoded" }
+      };
+      axios.post(
+        "/",
+        this.encode({
           "form-name": "contact",
           ...this.form
         }),
-      }).then((response) => {
+        axiosConfig
+      )
+      .then((response) => {
         console.log(response)
-        self.$router.push("Home");
+        // this.$router.push('thanks')
       })
-      .catch(e => console.error(e))
+      .catch((e) => {
+        console.log(e)
+        // this.$router.push('404')
+      })
+
+      // fetch('/', {
+      //   method: "post",
+      //   header: { "Content-Type": "application/x-www-form-urlencoded" },
+      //   body: this.encode({
+      //     "form-name": "contact",
+      //     ...this.form
+      //   }),
+      // }).then((response) => {
+      //   console.log(response)
+      //   self.$router.push("Home");
+      // })
+      // .catch(e => console.error(e))
     },
 
     submitForm() {
