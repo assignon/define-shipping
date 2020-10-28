@@ -139,7 +139,8 @@
 
           <div class="contact-form">
             <h3 class="">Get in Touch:</h3>
-            <v-form class="mt-3 contact-form-tag" ref="contactForm" name="contact" method="POST" netlify-honeypot="bot-field" data-netlify="true">
+            <!-- <v-form class="mt-3 contact-form-tag" ref="contactForm" name="contact" method="POST" netlify-honeypot="bot-field" data-netlify="true"> -->
+            <form name="contact" method="POST" netlify>
               <p class="form-msg animated"></p>
               <v-text-field
                 v-model="form.email"
@@ -166,7 +167,7 @@
                 data-aos-delay="450"
                 data-aos-duration="500"
               />
-              <div class="btn-container">
+              <!-- <div class="btn-container">
                 <div data-netlify-recaptcha>
 
                 </div>
@@ -180,8 +181,10 @@
                 >
                   <v-icon medium left class="ml-1">fas fa-paper-plane</v-icon>SEND
                 </v-btn>
-              </div>
-            </v-form>
+              </div> -->
+              <input type="submit" value='SEND'>
+            </form>
+            <!-- </v-form> -->
           </div>
         </div>
       </v-flex>
