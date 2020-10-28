@@ -140,7 +140,7 @@
           <div class="contact-form">
             <h3 class="">Get in Touch:</h3>
             <!-- <v-form class="mt-3 contact-form-tag" ref="contactForm" name="contact" method="POST" netlify-honeypot="bot-field" data-netlify="true"> -->
-            <form @submit.prevent='handleSubmit' name="contact" method="POST" netlify-honeypot="bot-field" data-netlify="true">
+            <form @submit.prevent='handleSubmit' name="contact" method="POST" netlify-honeypot="bot-field" netlify>
               <p class="form-msg animated"></p>
               <input type="email" required placeholder='Email' v-model='form.email'>
               <textarea name="message" id="" cols="30" rows="10" placeholder='Message' v-model='form.message'></textarea>
@@ -195,7 +195,7 @@
 </template>
 
 <script>
-// import axios from "axios";
+import axios from "axios";
 export default {
   name: "Home",
   components: {},
@@ -269,15 +269,26 @@ export default {
     },
 
     handleSubmit () {
-      fetch('/', {
-        method: "post",
-        header: { "Content-Type": "application/x-www-form-urlencoded" },
-        body: this.encode({
+      const axiosConfig = {
+        header: { "Content-Type": "application/x-www-form-urlencoded" }
+      };
+      axios.post(
+        "/",
+        this.encode({
           "form-name": "contact",
           ...this.form
         }),
-      }).then((response) => {console.log(response)})
-      .catch(e => console.error(e))
+        axiosConfig
+      );
+      // fetch('/', {
+      //   method: "post",
+      //   header: { "Content-Type": "application/x-www-form-urlencoded" },
+      //   body: this.encode({
+      //     "form-name": "contact",
+      //     ...this.form
+      //   }),
+      // }).then((response) => {console.log(response)})
+      // .catch(e => console.error(e))
     },
 
     submitForm() {
