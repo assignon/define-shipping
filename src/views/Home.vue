@@ -140,9 +140,11 @@
           <div class="contact-form">
             <h3 class="">Get in Touch:</h3>
             <!-- <v-form class="mt-3 contact-form-tag" ref="contactForm" name="contact" method="POST" netlify-honeypot="bot-field" data-netlify="true"> -->
-            <form @submit.prevent="submitForm" name="contact" method="POST" data-netlify="true">
+            <form name="contact" method="POST" data-netlify="true" netlify class='form'>
               <p class="form-msg animated"></p>
-              <v-text-field
+              <input type="email" required placeholder='Email'>
+              <textarea name="message" id="" cols="30" rows="10" placeholder='Message'></textarea>
+              <!-- <v-text-field
                 v-model="form.email"
                 :rules="emailRules"
                 type="email"
@@ -166,7 +168,7 @@
                 data-aos="fade-up"
                 data-aos-delay="450"
                 data-aos-duration="500"
-              />
+              /> -->
               <!-- <div class="btn-container">
                 <div data-netlify-recaptcha>
 
@@ -533,6 +535,18 @@ export default {
   width: 100%;
   height: auto;
   font-size: 16px;
+}
+.contact-form form{
+  width: 100%;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+}
+.contact-form form input, .contact-form form textarea{
+  border: 1px solid grey;
+  border-radius: 3px;
 }
 .contact-form .v-form .v-text-field {
   width: 100%;
